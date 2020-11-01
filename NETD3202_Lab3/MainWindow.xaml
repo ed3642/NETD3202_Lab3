@@ -1,0 +1,170 @@
+﻿<!--* MainWindow.xaml
+ * Program Title: IncInc Payroll (text messages)
+ * Last Modified Date: 2020/10/31
+ *         Written By: Eduardo San Martin Celi
+ * 
+ * Description:
+ * This is the XAML for NETD 3202 lab 3, Main page.
+ * It is layout with Grids.
+ * -->
+
+
+<Window x:Class="NETD3202_Lab3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NETD3202_Lab3"
+        mc:Ignorable="d"
+        Title="IncInc Piecework Payroll"
+        WindowStartupLocation="CenterScreen"
+        MinHeight="480" Height="480"
+        MinWidth="480"  Width="640" Loaded="Window_Loaded" Icon="/IncIncLogo 256x256.ico"
+        
+        >
+    <!-- Icon="/Resources/IncIncLogo 256x256.ico" -->
+    <!--Make sure you add an icon to your Window.-->
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="81*"/>
+            <ColumnDefinition Width="79*"/>
+        </Grid.ColumnDefinitions>
+        <!--Define rows for the outermost Grid, containing the tab control.-->
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35" />
+        </Grid.RowDefinitions>
+
+        <!--Row 0: Contains the TabControl.-->
+        <TabControl x:Name="tbcPayrollInterface" SelectionChanged="SwitchTab" Grid.ColumnSpan="2">
+            <TabItem x:Name="tbiPayrollEntry" Header="Payroll Entry">
+                <!--Ensure that there is a hotkey and tooltip on each TabItem.-->
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="127*" />
+                        <ColumnDefinition Width="248*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+
+                    <!-- Row 0 Controls -->
+                    <Label Content="Worker First _Name:" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=txtFName}" Height="26" Width="112"/>
+                    <TextBox x:Name="txtFName" Margin="5,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center"  Grid.Row="0" Grid.Column="1" TabIndex="0" ToolTip="Enter the worker's first name" Height="18" TextChanged="EditedTextbox"/>
+
+                    <!-- Row 1 Controls -->
+                    <Label Content="Worker L_ast Name:" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Row="1" Target="{Binding ElementName=txtLName}" Height="26" Width="112"/>
+                    <TextBox x:Name="txtLName" Margin="5,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center"  Grid.Row="1" Grid.Column="1" TabIndex="1" ToolTip="Enter the worker's last name" Height="18" TextChanged="EditedTextbox"/>
+
+                    <!-- Row 2 Controls -->
+                    <Label Content="Messages _Sent:" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=txtTextSent}" Height="26" Width="97"/>
+                    <TextBox x:Name="txtTextSent" Margin="5,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" TabIndex="2" ToolTip="Enter the worker's messages sent" Height="18" TextChanged="EditedTextbox"/>
+
+                    <!-- Row 3 Controls -->
+                    <Label Content="Total Pay:" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Target="{Binding ElementName=txtTotalPay}" Height="26" Width="62"/>
+                    <TextBox x:Name="txtTotalPay" Margin="5,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" TabIndex="3" ToolTip="Employees total pay" IsEnabled="False" SelectionOpacity="0.1" Height="18"/>
+
+                    <!-- Row 4 Controls -->
+                    <!-- Check out this trick to keep the buttons evenly spaced. -->
+                    <!-- Make a new grid that takes up both columns in the bottom row. -->
+                    <Grid Grid.Row="3" Grid.ColumnSpan="2" Margin="0,96,0,0" Grid.RowSpan="2">
+
+                        <!-- Define two equal columns within this new grid. -->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition />
+                            <!--<ColumnDefinition />-->
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Actual row 3 Controls -->
+                        <Button x:Name="btnCalculate" Content="_Calculate" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Column="0" IsDefault="True" TabIndex="8" ToolTip="Click to calculate the worker's pay." Click="btnCalculate_Click"  />
+                        <Button x:Name="btnClear" Content="C_lear" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Column="1" TabIndex="9" ToolTip="Click to reset all fields." Click="btnClear_Click"/>
+                        <!--<Button x:Name="btnSummary" Content="S_ummary" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Column="2" TabIndex="10" ToolTip="Click to Show summary data." Click="btnSummary_Click"/>
+                        -->
+                    </Grid>
+                    <Label x:Name="lblWorkerFNameError" Content="" Grid.Column="1" Margin="10,66,10,4" RenderTransformOrigin="0.773,1.927" Grid.Row="0" Height="26"/>
+                    <Label x:Name="lblWorkerLNameError" Content="" Grid.Column="1" Margin="10,66,10,4" RenderTransformOrigin="0.773,1.927" Grid.Row="1" Height="26"/>
+                    <Label x:Name="lblMessagesSentError" Content="" Grid.Column="1" Margin="5,66,5,4" RenderTransformOrigin="0.773,1.927" Grid.Row="2" Height="26"/>
+                </Grid>
+                <!--Copy/paste your Payroll Entry form XAML from Lab 2 (or Lab 1) here.-->
+                <!--Start from the first (outermost) <Grid> tag up until the </Grid>.-->
+                <!--Remove unnecessary controls; the only buttons that should remain are "Calculate" and "Clear".-->
+
+            </TabItem>
+            <TabItem x:Name="tbiSummary" Header="Summary">
+                <!--Ensure that there is a hotkey and tooltip on each TabItem.-->
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <!-- Row 0 Controls -->
+                    <Label Content="Employees Processed:" Margin="154,0,0,0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtEmployeesProcessed" Margin="5,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="2" TabIndex="4" ToolTip="Total employees processed" IsEnabled="False" SelectionOpacity="0.1"/>
+
+                    <!-- Row 1 Controls -->
+                    <Label Content="Accumulative Pay:" Margin="175,0,0,0" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtAccumulativePay" Margin="5,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" TabIndex="5" ToolTip="Accumulative pay for employees processed" IsEnabled="False" SelectionOpacity="0.1"/>
+
+                    <!-- Row 2 Controls -->
+                    <Label Content="Accumulative Messages:" Margin="142,0,0,0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtAccumulativeMessages" Margin="5,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" TabIndex="6" ToolTip="Accumulative messages sent to clients" IsEnabled="False" SelectionOpacity="0.1"/>
+
+                    <!-- Row 3 Controls -->
+                    <Label Content="Average pay:" Margin="202,0,0,0" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtAveragePay" Margin="5,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" TabIndex="7" ToolTip="Accumulative messages sent to clients" IsEnabled="False" SelectionOpacity="0.1"/>
+
+                </Grid>
+                <!--Copy/paste your Summary form XAML from Lab 2 here.-->
+                <!--Start from the first (outermost) <Grid> tag up until the </Grid>.-->
+                <!--Remove the "Close" button from the Summary-related markup.-->
+
+            </TabItem>
+
+            <TabItem x:Name="tbiEmployeeList" Header="Employee List">
+                <!--Ensure that there is a hotkey and tooltip on each TabItem.-->
+
+                <DataGrid x:Name="dgEmployeeRecords" SelectionMode="Single" SelectionUnit="FullRow" >
+
+                </DataGrid>
+                <!--This DataGrid will probably need to be named and perhaps have some other properties set.-->
+
+            </TabItem>
+
+        </TabControl>
+
+        <!--Row 1: Contains the Exit button, available to all tabs.-->
+        <Button x:Name="btnExit" Content="E_xit" Margin="10,4,10,4" Grid.Row="1" ToolTip="Click here to exit the application, d00d." Click="btnExit_Click" Grid.ColumnSpan="2"/>
+        <!--Just seeing who pays attention.-->
+
+        <!--Row 2: Contains the StatusBar.-->
+        <StatusBar x:Name="stsApplicationStatus" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,35,0,0" Grid.RowSpan="2">
+            <StatusBarItem HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Label x:Name="lblStatus" Content="Status:"/>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Label x:Name="lblTime" Content="00/00/00 00:00"/>
+            </StatusBarItem>
+        </StatusBar>
+
+    </Grid>
+
+</Window>

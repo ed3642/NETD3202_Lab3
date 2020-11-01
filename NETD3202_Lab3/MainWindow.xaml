@@ -19,7 +19,7 @@
         Title="IncInc Piecework Payroll"
         WindowStartupLocation="CenterScreen"
         MinHeight="480" Height="480"
-        MinWidth="480"  Width="640" Loaded="Window_Loaded" Icon="/IncIncLogo 256x256.ico"
+        MinWidth="480"  Width="640" Loaded="Window_Loaded" Icon="/IncIncLogo 256x256.ico" 
         
         >
     <!-- Icon="/Resources/IncIncLogo 256x256.ico" -->
